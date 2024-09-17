@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import '../models/note.dart';
@@ -98,39 +99,64 @@ void deleteNote(int id){
     //current notes
     List<Note> currentNotes = noteDatabase.currentNotes;
     return Scaffold(
-      appBar: AppBar(title: const Text('Notes')),
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+      
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: createNote,
         child: const Icon(Icons.add),
       ),
-      body: ListView.builder(
-        itemCount: currentNotes.length,
-        itemBuilder: (context, index) {
-          //get individual note
-          final note = currentNotes[index];
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
 
-          //list title ui
-          return ListTile(
-            title: Text(note.text),
-            trailing: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                // edit button
-                IconButton(
-                  onPressed: () => updateNote(note),
-                  icon: const Icon(Icons.edit),
-                ),
-
-                // delete button
-                IconButton(
-                  onPressed: () => deleteNote(note.id),
-                  icon: const Icon(Icons.delete),
-                ),
-              ]
+          //Heading
+          Padding(
+            padding: const EdgeInsets.all(25.0),
+            child: Text('Notes',
+            style: GoogleFonts.dmSerifText(
+              fontSize: 48,
+            color: Theme.of(context).colorScheme.inversePrimary,
             ),
-          );
-    },
-    ),
+            ),
+          ),
+
+          //list of notes
+          Expanded(
+            child: 
+          ListView.builder(
+            itemCount: currentNotes.length,
+            itemBuilder: (context, index) {
+              //get individual note
+              final note = currentNotes[index];
+          
+              //list title ui
+              return ListTile(
+                title: Text(note.text),
+                trailing: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    // edit button
+                    IconButton(
+                      onPressed: () => updateNote(note),
+                      icon: const Icon(Icons.edit),
+                    ),
+          
+                    // delete button
+                    IconButton(
+                      onPressed: () => deleteNote(note.id),
+                      icon: const Icon(Icons.delete),
+                    ),
+                  ]
+                ),
+              );
+              },
+              ),
+          )
+        ],
+      ),
     );
   }
 }

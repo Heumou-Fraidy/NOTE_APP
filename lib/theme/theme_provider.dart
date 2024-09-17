@@ -9,6 +9,8 @@ class ThemeProvider with ChangeNotifier {
 
   //initialize dark mode
   ThemeData get themeData => _themeData; 
+
+  //GETTER METHOD TO SEE IF WE ARE IN DARK MODE OR NOT
   bool get isDarkMode => _themeData == darkMode;
   set themeData(ThemeData themeData) {
 
@@ -16,6 +18,7 @@ class ThemeProvider with ChangeNotifier {
   _themeData = themeData;
     notifyListeners();
   }
+//we will use this to switch the mode
 
   void toggleTheme() {
     if (_themeData == lightMode) {
