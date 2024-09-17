@@ -1,3 +1,4 @@
+import 'package:first_flutter_project/components/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -102,22 +103,27 @@ void deleteNote(int id){
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
+        foregroundColor: Theme.of(context).colorScheme.inversePrimary,
       
       ),
+
+      backgroundColor: Theme.of(context).colorScheme.background,
       floatingActionButton: FloatingActionButton(
         onPressed: createNote,
         child: const Icon(Icons.add),
       ),
+
+      drawer: const MyDrawer(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
 
           //Heading
           Padding(
-            padding: const EdgeInsets.all(25.0),
+            padding: const EdgeInsets.only(left: 25.0),
             child: Text('Notes',
             style: GoogleFonts.dmSerifText(
-              fontSize: 48,
+              fontSize: 50,
             color: Theme.of(context).colorScheme.inversePrimary,
             ),
             ),
