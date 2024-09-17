@@ -1,4 +1,5 @@
 import 'package:first_flutter_project/components/drawer.dart';
+import 'package:first_flutter_project/components/note_til.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -121,7 +122,7 @@ void deleteNote(int id){
           //Heading
           Padding(
             padding: const EdgeInsets.only(left: 25.0),
-            child: Text('Notes',
+            child: Text('Notes By Fraidy',
             style: GoogleFonts.dmSerifText(
               fontSize: 50,
             color: Theme.of(context).colorScheme.inversePrimary,
@@ -139,26 +140,14 @@ void deleteNote(int id){
               final note = currentNotes[index];
           
               //list title ui
-              return ListTile(
-                title: Text(note.text),
-                trailing: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    // edit button
-                    IconButton(
-                      onPressed: () => updateNote(note),
-                      icon: const Icon(Icons.edit),
-                    ),
-          
-                    // delete button
-                    IconButton(
-                      onPressed: () => deleteNote(note.id),
-                      icon: const Icon(Icons.delete),
-                    ),
-                  ]
-                ),
-              );
+             return NoteTile(
+              text: note.text,
+              onEditPressed: () => updateNote(note),
+              onDeletePressed:() => deleteNote(note.id),
+             );
+
               },
+
               ),
           )
         ],
