@@ -17,22 +17,38 @@ class SettingsPage extends StatelessWidget {
       foregroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
 
-      body: Row(children: [
+      body: Container(
+        decoration: BoxDecoration( 
+        color: Theme.of(context).colorScheme.primary,
+       // borderRadius: const BorderRadius.vertical(),
+        ),
 
-        //dark mode
-        Text("Dark Mode"),
-
-        //switch toggle
-        CupertinoSwitch(
-          value: Provider.of<ThemeProvider>(context, listen: false).isDarkMode, 
-          onChanged: (value) =>
-          Provider.of<ThemeProvider>(context, listen: false)
-          .toggleTheme(),
-        )
-      ],
-      ),
-      
+        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 25),
+        margin: EdgeInsets.only(left:25, right: 25, top: 10),
+        
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+        
+          //dark mode
+          Text("Dark Mode",style: TextStyle(fontWeight: FontWeight.bold,
+          color: Theme.of(context).colorScheme.inversePrimary,
+          ),
+          ),
+        
+          //switch toggle
+          CupertinoSwitch(
+            value: Provider.of<ThemeProvider>(context, listen: false).isDarkMode, 
+            onChanged: (value) =>
+            Provider.of<ThemeProvider>(context, listen: false)
+            .toggleTheme(),
+          )
+        ],
+        ),
+        ),
       );
+      
+      
     
   }
 }
